@@ -1,0 +1,12 @@
+<% title "Konteksty" %>
+<table>
+	<tr>
+		<th>ID</th>
+    	<th>Klasy</th>
+		<th>Krawędzie</th>
+		<th>Opcje</th>
+	</tr>
+	<%= render :partial => 'context', :collection => @contexts, :as => :context %>
+</table>
+
+<%= render :partial => 'new', :locals => {:new_context => Context.new } %>

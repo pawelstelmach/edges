@@ -1,0 +1,11 @@
+<tr style="background-color:<%=cycle('#FFF', '#EEE')%>">
+<td ><%= context.id %></td>
+<% sc = ""%>
+<% cc = ""%>
+<% print context.class_connections.inspect %>
+<% context.service_classes.each do |c| sc+="#{c.name}, " end %>
+<% context.class_connections.each do |c| cc+="#{c.parent.name}-#{c.child.name}; " end %>
+<td><%= sc %></td>
+<td><%= cc %></td>
+<td style="text-align:center;"><%= link_to "Edytuj", edit_context_path(context) %> | <%= link_to "Usuń", contexts_path(context), :confirm => 'Jesteś pewien?', :method => :delete %></td>
+</tr>

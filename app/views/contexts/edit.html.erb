@@ -1,0 +1,13 @@
+<h2>Edycja kontekstu <%= @context.id%></h2>
+
+<% form_for(@context) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :krawędzie %><br />
+    <%= f.text_field :class_connections_form %>
+  </p>
+  <p>
+    <%= f.submit 'Zapisz kontekst' %>
+  </p>
+<% end %>

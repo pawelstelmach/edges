@@ -1,0 +1,13 @@
+<% title "Edycja klasy" %>
+<%= link_to 'Klasy', service_classes_path %>
+<% form_for(@service_class) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Aktualizuj klasę' %>
+  </p>
+<% end %>
+

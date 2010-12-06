@@ -1,0 +1,13 @@
+<h2>Nowa klasa</h2>
+
+<% form_for(new_service_class) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nazwa %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Stwórz klasę' %>
+  </p>
+<% end %>

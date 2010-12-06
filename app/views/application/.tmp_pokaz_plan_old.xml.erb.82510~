@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wymagania>
+  <% @final_plan.each do |p, u| %>
+    <wymaganie>
+      <id><%= p.proces_id %></id>
+      <kandydaci>
+        <% p.kandydaci.each do |k| %>
+        <kandydat>
+          <% if k.id == u.id %>
+          <wybrany>true</wybrany>
+          <% end %>
+          <id><%= k.id %></id>
+          <nazwa><%= k.name %></nazwa>
+          <description><%= k.description %></description>
+          <input><%= k.input %></input>
+          <output><%= k.output %></output>
+          <koszt><%= k.cost %></koszt>
+          <czas><%= k.response_time %></czas>
+        </kandydat>
+        <% end %>
+      </kandydaci>
+    </wymaganie>
+  <% end %>
+</wymagania>

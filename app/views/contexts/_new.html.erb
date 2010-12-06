@@ -1,0 +1,13 @@
+<h2>Nowa kontekst</h2>
+
+<% form_for(new_context) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :krawędzie %><br />
+    <%= f.text_field :class_connections_form %>
+  </p>
+  <p>
+    <%= f.submit 'Stwórz kontekst' %>
+  </p>
+<% end %>

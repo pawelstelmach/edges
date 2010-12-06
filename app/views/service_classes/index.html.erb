@@ -1,0 +1,10 @@
+<% title "Klasy" %>
+<table>
+	<tr>
+		<th>Nazwa</th>
+    	<th>Opcje</th>
+	</tr>
+	<%= render :partial => 'service_class', :collection => @service_classes, :as => :service_class %>
+</table>
+
+<%= render :partial => 'new', :locals => {:new_service_class => ServiceClass.new } %>

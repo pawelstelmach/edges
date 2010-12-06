@@ -1,0 +1,4 @@
+<tr style="background-color:<%=cycle('#FFF', '#EEE')%>">
+<td ><%= service_class.name %></td>
+<td style="text-align:center;"><%= link_to "Edytuj", edit_service_class_path(service_class) %> | <%= link_to "Usuń", service_class_path(service_class), :confirm => 'Jesteś pewien?', :method => :delete %></td>
+</tr>

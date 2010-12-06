@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionalities>
+ <% @functionalities.each do |p, u| %>
+ <functionality>
+  <id><%= p["id"] %></id> 
+  <name><%= p["name"] %></name>
+  <class><%= p["class"] %></class>
+  <% p["child"].to_a.flatten.each do |c| %>
+  <child><%= c %></child>
+  <% end %>
+  <% p["input"].to_a.flatten.each do |t|%>
+  <input><%= t %></input>
+  <% end %>
+  <% p["output"].to_a.flatten.each do |t|%>
+  <output><%= t %></output>
+  <% end %>
+ </functionality>
+ <% end %>
+</functionalities>

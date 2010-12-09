@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   #  print "\n#{k[:parent]["id"]} -> #{k[:child]["id"]} \n\n"
   #end
   #@functionalities = Hash.from_xml( xml )['request']['functionalities']['functionality']
+  print(params[:sla].inspect)
   @functionalities = Hash.from_xml(params[:sla])['functionalities']['functionality'].to_a
   print @functionalities.inspect
   @new_functionalities = concepts_similarity_algorithm( @functionalities )

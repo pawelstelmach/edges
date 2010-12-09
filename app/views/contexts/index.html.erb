@@ -10,3 +10,20 @@
 </table>
 
 <%= render :partial => 'new', :locals => {:new_context => Context.new } %>
+
+<br/><br/>
+<%= link_to "Importuj z csv", "#", :id => "toggle_csv" %>
+<div id="csv">
+<%= render :partial => 'context_from_file' %>
+</div>
+
+<%= javascript_tag("
+     $j(document).ready(function() {
+        $j('#csv').hide();
+        $j('a#toggle_csv').click(function() {
+		$j('#csv').slideToggle(400);
+		  return false;
+        });
+      });
+") %>
+

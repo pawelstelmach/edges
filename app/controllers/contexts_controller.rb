@@ -33,5 +33,15 @@ class ContextsController < ApplicationController
     @context.destroy
     redirect_to contexts_path
   end
+  
+  def parse_csv
+    Context.delete_all
+    params[:csv].each_line do |line|
+      context = line.strip
+      Context.create(:class_connections_form => context) unless context==""
+    end
+    redirect_to contexts_path
+    # debugger
+  end
 
 end

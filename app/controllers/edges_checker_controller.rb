@@ -1,36 +1,20 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
+class EdgesCheckerController < ApplicationController
+  wsdl_service_name 'EdgesChecker'
+  web_service_api EdgesCheckerApi
+  web_service_scaffold :invocation if Rails.env == 'development'
 
-class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
-  protect_from_forgery :except => [:run]# See ActionController::RequestForgeryProtection for details
 
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
-  #depracted
-  def run
+def check_ssdl(smartservicegraph)
+  #TODO: Must implement ssdl translation to apropriet form
+  return smartservicegraph 
+end
 
-  #@experiment = Hash.from_xml( xml )['request']
-  
-  #non_coherent_nodes = get_non_coherent_nodes(@functionalities)
-  #if non_coherent_nodes.empty?
-  #  print xml#return xml
-  #end
-  #n1 = non_coherent_nodes.second
-
-  #print @functionalities.size
-  #print "\n\n"
-  #array = n1[:missing]=="child" ? possible_children(n1[:element], @functionalities) : possible_parents(n1[:element], @functionalities)
-  #array.each do |k|
-  #  print "\n#{k[:parent]["id"]} -> #{k[:child]["id"]} \n\n"
-  #end
-  #@functionalities = Hash.from_xml( xml )['request']['functionalities']['functionality']
-  print(params[:sla].inspect)
-  @functionalities = Hash.from_xml(params[:sla])['functionalities']['functionality'].to_a
+def check(xml)
+  @functionalities = Hash.from_xml(xml)['functionalities']['functionality'].to_a
   print @functionalities.inspect
   @new_functionalities = concepts_similarity_algorithm( @functionalities )
   
-  render 'show_functionalities.xml.erb', :layout => false
+  return generate_functionalities_result_xml(@functionalities)
   
 end
 
@@ -76,5 +60,28 @@ private
     functionalities
   end
   
+  def generate_functionalities_result_xml(functionalities)
+    result = ""
+    xml_build = Builder::XmlMarkup.new(:target => result, :ident => 2 )
+    xml_build.instruct! 
+    xml_build.functionalities {
+      functionalities.each do |p, u|
+      xml_build.functionality {
+      xml_build.id(p["id"])
+      xml_build.name(p["name"])
+      xml_build.class(p["class"])
+      p["child"].to_a.flatten.each do |c|
+        xml_build.child(c)
+      end
+      p["input"].to_a.flatten.each do |t|
+        xml_build.input(t)
+      end
+      p["output"].to_a.flatten.each do |t|
+        xml_build.output(t)
+      end
+      }
+    end
+    }
+    return result
   end
-  
+end

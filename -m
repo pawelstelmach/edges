@@ -1,0 +1,16 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true]
+	"ClassConnection" [shape=Mrecord, label="{ClassConnection|\l}"]
+	"Context" [shape=Mrecord, label="{Context|\l}"]
+	"ContextServiceClass" [shape=Mrecord, label="{ContextServiceClass|\l}"]
+	"ContextTools" [shape=record, label="{ContextTools|}"]
+	"GraphTools" [shape=record, label="{GraphTools|}"]
+	"ServiceClass" [shape=Mrecord, label="{ServiceClass|name :string\l}"]
+	"Context" -> "ContextServiceClas" [label="context_service_classes", arrowtail=crow, arrowhead=dot, dir=both]
+	"Context" -> "ClassConnection" [arrowtail=crow, arrowhead=dot, dir=both]
+	"Context" -> "ServiceClas" [label="service_classes", arrowtail=crow, arrowhead=crow, dir=both]
+	"ServiceClass" -> "ContextServiceClas" [label="context_service_classes", arrowtail=crow, arrowhead=dot, dir=both]
+	"ServiceClass" -> "ClassConnection" [label="class_connections_as_parent", arrowtail=crow, arrowhead=dot, dir=both]
+	"ServiceClass" -> "ClassConnection" [label="class_connections_as_child", arrowtail=crow, arrowhead=dot, dir=both]
+	"ServiceClass" -> "Context" [arrowtail=crow, arrowhead=crow, dir=both]
+}
